@@ -9,7 +9,8 @@ from models import Author, Book, Library, Librarian
 
 # Query all books by a specific author
 author_name = Author.objects.get(name="")
-books_by_author = Book.objects.filter(author=author_name)
+
+books_by_author = Book.objects.filter(name=author_name)
 print(f"Books by {author_name.name}: {[book.title for book in books_by_author]}")
 
 
