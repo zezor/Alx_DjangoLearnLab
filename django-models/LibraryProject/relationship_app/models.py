@@ -20,6 +20,10 @@ class Library(models.Model):
     library_name = models.CharField(max_length=100)
     books = models.ManyToManyField(Book, related_name='libraries')
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(args, kwargs)
+        self.name = None
+
     def __str__(self):
         return self.name
 
