@@ -5,12 +5,13 @@ from django.template.defaultfilters import title
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'django_models.settings')
 django.setup()
 
-from models import Author, Book, Library, Librarian
+from .models import Author, Book, Library, Librarian
 
 # Query all books by a specific author
 author_name = Author.objects.get(name="")
+author = Author.objects.get(name=author_name)
 
-books_by_author = Book.objects.filter(name=author_name)
+books_by_author = Book.objects.filter(name=author)
 print(f"Books by {author_name.name}: {[book.title for book in books_by_author]}")
 
 
