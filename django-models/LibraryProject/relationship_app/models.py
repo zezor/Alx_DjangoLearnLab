@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db import models
 
 class Author(models.Model):
     objects = None
@@ -8,10 +9,25 @@ class Author(models.Model):
     def __str__(self):
         return self.name
 
+# class Book(models.Model):
+#     objects = None
+#     title = models.CharField(max_length=200)
+#     author = models.ForeignKey(Author, on_delete=models.CASCADE, related_name='books')
+
+#     def __str__(self):
+#         return self.title
+    
+##Extend the Book Model with Custom Permissions
 class Book(models.Model):
-    objects = None
     title = models.CharField(max_length=200)
-    author = models.ForeignKey(Author, on_delete=models.CASCADE, related_name='books')
+    author = models.CharField(max_length=200)
+
+    class Meta:
+        permissions = [
+            ("can_add_book", "Can add book"),
+            ("can_change_book", "Can change book"),
+            ("can_delete_book", "Can delete book"),
+        ]
 
     def __str__(self):
         return self.title
@@ -49,3 +65,6 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return f"{self.user.username} - {self.role}"
+    
+    
+
