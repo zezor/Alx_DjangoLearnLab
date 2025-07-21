@@ -4,8 +4,8 @@ from .models import Book, Library
 
 # Create your views here.
 def all_books(request):
-    books = Book.objects.get_all()
-    return render(request, 'relationship_app/templates/list_books.html', {'all_books':books})
+    books = Book.objects.all()
+    return render(request, 'relationship_app/list_books.html', {'all_books':books})
 
 
 class LibraryDetailView(DetailView):
