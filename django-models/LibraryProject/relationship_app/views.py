@@ -15,9 +15,9 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login
 
 # Create your views here.
-def all_books(request):
+def allbooks(request):
     books = Book.objects.all()
-    return render(request, 'relationship_app/list_books.html', {'all_books':books})
+    return render(request, 'relationship_app/list_books.html', {'allbooks':books})
 
 
 class LibraryDetailView(DetailView):
@@ -34,7 +34,7 @@ def register(request):
         if form.is_valid():
             user = form.save()
             login(request, user)  # Log the user in after registration
-            return redirect('list_books')  # Redirect to any page after login
+            return redirect('allbooks')  # Redirect to any page after login
     else:
         form = UserCreationForm()
     return render(request, 'relationship_app/register.html', {'form': form})
@@ -70,7 +70,7 @@ def add_book(request):
         form = BookForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('book_list')
+            return redirect('allbooks')
     else:
         form = BookForm()
     return render(request, 'relationship_app/book_form.html', {'form': form, 'action': 'Add'})
@@ -82,7 +82,7 @@ def edit_book(request, pk):
         form = BookForm(request.POST, instance=book)
         if form.is_valid():
             form.save()
-            return redirect('book_list')
+            return redirect('allbooks')
     else:
         form = BookForm(instance=book)
     return render(request, 'relationship_app/book_form.html', {'form': form, 'action': 'Edit'})
@@ -92,6 +92,6 @@ def delete_book(request, pk):
     book = get_object_or_404(Book, pk=pk)
     if request.method == 'POST':
         book.delete()
-        return redirect('book_list')
+        return redirect('allbooks')
     return render(request, 'relationship_app/book_confirm_delete.html', {'book': book})
 

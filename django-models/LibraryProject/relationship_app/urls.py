@@ -1,5 +1,5 @@
 from django.urls import  path
-from .views import all_books, LibraryDetailView, register
+from .views import allbooks, LibraryDetailView, register
 from django.contrib.auth import views as auth_views
 from . import views
 from .views import admin_view, librarian_view, member_view
@@ -14,7 +14,8 @@ urlpatterns = [
 
     # Your other views
   
-    path('allbooks', all_books, name='all_books'),  # list_books
+  
+    path('allbooks', allbooks, name='allbooks'),  # list_books
     path('library/<int:pk>/', LibraryDetailView.as_view(), name='library_detail'),  # LibraryDetailView
     
     ###Role-Based Views

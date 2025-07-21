@@ -1,3 +1,4 @@
+from datetime import date
 from django.db import models
 from django.contrib.auth.models import User
 from django.db import models
@@ -21,8 +22,9 @@ class Author(models.Model):
 class Book(models.Model):
     title = models.CharField(max_length=255)
     author = models.CharField(max_length=255)
-    published_date = models.DateField()
-    isbn = models.CharField(max_length=13)
+    published_date = models.DateField(default=date(2000, 1, 1))
+    isbn = models.CharField(max_length=13, default='0000000000000')
+
 
     class Meta:
         permissions = [
