@@ -5,6 +5,7 @@ from .models import Library
 from django.contrib.auth.decorators import user_passes_test, login_required, permission_required
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import UserProfile
+from django.contrib.auth.decorators import permission_required
 from .forms import BookForm  # You need a form for adding/editing books
 
 
