@@ -23,7 +23,7 @@ urlpatterns = [
     path('member-panel/', member_view, name='member_view'),
     
     # permission actions
-    path('books/add/', views.add_book, name='add_book'),
-    path('books/<int:pk>/edit/', views.edit_book, name='edit_book'),
+    path('add_books/', views.add_book, name='add_book'),
+    path('edit_book/<int:pk>/edit/', views.edit_book, name='edit_book'),
     path('books/<int:pk>/delete/', views.delete_book, name='delete_book'),
 ]
