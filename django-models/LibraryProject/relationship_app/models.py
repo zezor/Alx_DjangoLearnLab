@@ -19,8 +19,10 @@ class Author(models.Model):
     
 ##Extend the Book Model with Custom Permissions
 class Book(models.Model):
-    title = models.CharField(max_length=200)
-    author = models.CharField(max_length=200)
+    title = models.CharField(max_length=255)
+    author = models.CharField(max_length=255)
+    published_date = models.DateField()
+    isbn = models.CharField(max_length=13)
 
     class Meta:
         permissions = [
