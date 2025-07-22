@@ -83,7 +83,7 @@ def add_book(request):
         form = BookForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('all_books')
+            return redirect('allbooks')
     else:
         form = BookForm()
     return render(request, 'relationship_app/book_form.html', {'form': form, 'action': 'Add'})
@@ -96,7 +96,7 @@ def edit_book(request, pk):
         form = BookForm(request.POST, instance=book)
         if form.is_valid():
             form.save()
-            return redirect('all_books')
+            return redirect('allbooks')
     else:
         form = BookForm(instance=book)
     return render(request, 'relationship_app/book_form.html', {'form': form, 'action': 'Edit'})
@@ -106,7 +106,7 @@ def delete_book(request, pk):
     book = get_object_or_404(Book, pk=pk)
     if request.method == 'POST':
         book.delete()
-        return redirect('all_books')
+        return redirect('allbooks')
     return render(request, 'relationship_app/book_confirm_delete.html', {'book': book})
 
 
@@ -115,12 +115,12 @@ class BookUpdateView(UpdateView):
     model = Book
     fields = ['title', 'author', 'published_date', 'isbn']
     template_name = 'relationship_app/book_form.html'
-    success_url = reverse_lazy('book-list')
+    success_url = reverse_lazy('allbooks')
 
 class BookDeleteView(DeleteView):
     model = Book
     template_name = 'relationship_app/book_confirm_delete.html'
-    success_url = reverse_lazy('book-list')
+    success_url = reverse_lazy('allbooks')
 
     def delete(self, request, *args, **kwargs):
         messages.success(request, "Book deleted successfully.")
