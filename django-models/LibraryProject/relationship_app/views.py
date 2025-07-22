@@ -1,5 +1,6 @@
 from msilib.schema import ListView
 
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.views.generic.detail import DetailView
 from .models import Book
@@ -44,7 +45,7 @@ def register(request):
         if form.is_valid():
             user = form.save()
             login(request, user)  # Log the user in after registration
-            return redirect('all_books')  # Redirect to any page after login
+            return redirect('allbooks')  # Redirect to any page after login
     else:
         form = UserCreationForm()
     return render(request, 'relationship_app/register.html', {'form': form})
@@ -111,7 +112,7 @@ def delete_book(request, pk):
 
 
 
-class BookUpdateView(UpdateView):
+class BookUpdateView(LoginRequiredMixin,UpdateView):
     model = Book
     fields = ['title', 'author', 'published_date', 'isbn']
     template_name = 'relationship_app/book_form.html'
