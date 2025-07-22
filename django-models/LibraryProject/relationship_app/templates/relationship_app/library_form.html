@@ -1,17 +1,20 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Register</title>
+    <title>Edit Library</title>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
-    <h1>Register</h1>
+<div class="container">
+    <h2>✏️ Edit Library</h2>
+
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Register</button>
+        <button type="submit">💾 Save</button>
+        <a href="{% url 'library-list' %}">Cancel</a>
     </form>
+</div>
 </body>
 </html>

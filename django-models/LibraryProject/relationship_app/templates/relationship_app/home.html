@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Library Dashboard</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f7f9fc;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .actions {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .actions a {
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            background-color: #3498db;
+            color: white;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+        .actions a:hover {
+            background-color: #2980b9;
+        }
+        .messages {
+            margin-top: 1rem;
+            text-align: center;
+        }
+        .messages .success {
+            color: green;
+        }
+        .messages .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>📚 Welcome to the Library Dashboard</h1>
+
+        <div class="messages">
+            {% if messages %}
+                {% for message in messages %}
+                    <p class="{{ message.tags }}">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        </div>
+
+        <div class="actions">
+            <a href="{% url 'allbooks' %}">View All Books</a>
+            <a href="{% url 'allbooks' %}">View All Libraries</a>
+        </div>
+    </div>
+
+</body>
+</html>
