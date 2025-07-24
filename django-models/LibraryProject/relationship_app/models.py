@@ -35,7 +35,7 @@ class Book(models.Model):
 
 class Library(models.Model):
     library_name = models.CharField(max_length=100)
-    books = models.ManyToManyField(Book, related_name='libraries')
+    books = models.ManyToManyField(Book, related_name='libraries',null=True)
 
     def __str__(self):
         return self.library_name

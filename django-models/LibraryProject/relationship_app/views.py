@@ -1,13 +1,11 @@
 from msilib.schema import ListView
 
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render
 from django.views.generic.detail import DetailView
 from .models import Book
 from .models import Library
 from django.contrib.auth.decorators import user_passes_test, login_required, permission_required
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import UserProfile
 from django.contrib.auth.decorators import permission_required
 from .forms import BookForm  # You need a form for adding/editing books
 from django.views.generic import UpdateView, DeleteView, TemplateView
@@ -36,8 +34,6 @@ class LibraryDetailView(DetailView):
     template_name = 'relationship_app/library_detail.html'
     context_object_name = 'library'
     
-    
-
 
 def register(request):
     if request.method == 'POST':
