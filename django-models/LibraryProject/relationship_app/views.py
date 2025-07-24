@@ -73,6 +73,8 @@ def librarian_view(request):
 def member_view(request):
     return render(request, 'relationship_app/member_view.html')
 
+
+
 ## Update Views to Enforce Permissions
 @permission_required('relationship_app.can_add_book', raise_exception=True)
 def add_book(request):
@@ -83,7 +85,7 @@ def add_book(request):
             return redirect('allbooks')
     else:
         form = BookForm()
-    return render(request, 'relationship_app/book_form.html', {'form': form, 'action': 'Add'})
+    return render(request, 'relationship_app/add_book_form.html', {'form': form, 'action': 'Add'})
 
 
 @permission_required('relationship_app.can_change_book', raise_exception=True)

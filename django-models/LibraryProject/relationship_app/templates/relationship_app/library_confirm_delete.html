@@ -1,27 +1,8 @@
-<!--{% load static %}-->
-<!--<!DOCTYPE html>-->
-<!--<html>-->
-<!--<head>-->
-<!--    <title>Delete Library</title>-->
-<!--    <link rel="stylesheet" href="{% static 'css/styles.css' %}">-->
-<!--</head>-->
-<!--<body>-->
-<!--<div class="container">-->
-<!--    <h2>🗑️ Delete Library</h2>-->
-
-<!--    <p>Are you sure you want to delete <strong>{{ object.library_name }}</strong>?</p>-->
-
-<!--    <form method="post">-->
-<!--        {% csrf_token %}-->
-<!--        <button type="submit">Yes, delete</button>-->
-<!--        <a href="{% url 'library-list' %}">Cancel</a>-->
-<!--    </form>-->
-<!--</div>-->
-<!--</body>-->
-<!--</html>-->
 
 
+{% extends 'relationship_app/base.html' %}
 {% load static %}
+{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -90,3 +71,4 @@
 </div>
 </body>
 </html>
+{% block content %}

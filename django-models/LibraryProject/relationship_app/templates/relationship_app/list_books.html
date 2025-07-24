@@ -1,114 +1,7 @@
-<!--{% load static %}-->
-<!--&lt;!&ndash; list_books.html &ndash;&gt;-->
-<!--<!DOCTYPE html>-->
-<!--<html lang="en">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <title>List of Books</title>-->
-<!--    <link rel="stylesheet" href="{% static 'css/styles.css' %}">-->
-<!--</head>-->
-<!--<body>-->
-<!--    <h1>Books Available:</h1>-->
-<!--    <ul>-->
-<!--{% for book in all_books %}-->
-<!--    <li>-->
-<!--        <strong>{{ book.title }}</strong><br>-->
-<!--        Author: {{ book.author }}<br>-->
-<!--        Published Date: {{ book.published_date|date:"F d, Y" }}<br>-->
-<!--        ISBN: {{ book.isbn }}-->
-<!--    </li>-->
 
-<!--{% endfor %}-->
-<!--</ul>-->
-
-<!--</body>-->
-<!--</html>-->
-
-<!--{% load static %}-->
-<!--<!DOCTYPE html>-->
-<!--<html lang="en">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <title>List of Books</title>-->
-<!--    <link rel="stylesheet" href="{% static 'css/styles.css' %}">-->
-<!--    <style>-->
-<!--        body {-->
-<!--            font-family: 'Segoe UI', sans-serif;-->
-<!--            background-color: #f4f4f9;-->
-<!--            margin: 0;-->
-<!--            padding: 20px;-->
-<!--        }-->
-
-<!--        .container {-->
-<!--            max-width: 800px;-->
-<!--            margin: auto;-->
-<!--            background-color: #ffffff;-->
-<!--            padding: 30px;-->
-<!--            border-radius: 12px;-->
-<!--            box-shadow: 0 0 10px rgba(0,0,0,0.1);-->
-<!--        }-->
-
-<!--        h1 {-->
-<!--            text-align: center;-->
-<!--            color: #333;-->
-<!--            margin-bottom: 30px;-->
-<!--        }-->
-
-<!--        ul {-->
-<!--            list-style-type: none;-->
-<!--            padding: 0;-->
-<!--        }-->
-
-<!--        li {-->
-<!--            background: #e9efff;-->
-<!--            margin-bottom: 15px;-->
-<!--            padding: 15px;-->
-<!--            border-left: 5px solid #3366cc;-->
-<!--            border-radius: 8px;-->
-<!--            transition: background 0.3s ease;-->
-<!--        }-->
-
-<!--        li:hover {-->
-<!--            background: #dbe7ff;-->
-<!--        }-->
-
-<!--        strong {-->
-<!--            font-size: 1.2em;-->
-<!--            color: #222;-->
-<!--        }-->
-
-<!--        .footer {-->
-<!--            text-align: center;-->
-<!--            margin-top: 40px;-->
-<!--            font-size: 0.9em;-->
-<!--            color: #999;-->
-<!--        }-->
-<!--    </style>-->
-<!--</head>-->
-<!--<body>-->
-<!--<div class="container">-->
-<!--    <h1>📚 Books Available</h1>-->
-
-<!--    <ul>-->
-<!--        {% for book in all_books %}-->
-<!--            <li>-->
-<!--                <strong>{{ book.title }}</strong><br>-->
-<!--                Author: {{ book.author }}<br>-->
-<!--                Published Date: {{ book.published_date|date:"F d, Y" }}<br>-->
-<!--                ISBN: {{ book.isbn }}-->
-<!--            </li>-->
-<!--        {% empty %}-->
-<!--            <li>No books available.</li>-->
-<!--        {% endfor %}-->
-<!--    </ul>-->
-
-<!--    <div class="footer">-->
-<!--        &copy; {{ now|date:"Y" }} Library System-->
-<!--    </div>-->
-<!--</div>-->
-<!--</body>-->
-<!--</html>-->
+{% extends 'relationship_app/base.html' %}
 {% load static %}
+{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -248,3 +141,4 @@
 </div>
 </body>
 </html>
+{% endblock %}

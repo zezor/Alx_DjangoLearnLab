@@ -1,4 +1,7 @@
+{% extends 'relationship_app/base.html' %}
+
 {% load static %}
+{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -69,8 +72,10 @@
         <div class="actions">
             <a href="{% url 'allbooks' %}">View All Books</a>
             <a href="{% url 'allbooks' %}">View All Libraries</a>
+            <a href="{% url 'add_book' %}">+ Add Book</a>
         </div>
     </div>
 
 </body>
 </html>
+{% endblock %}
