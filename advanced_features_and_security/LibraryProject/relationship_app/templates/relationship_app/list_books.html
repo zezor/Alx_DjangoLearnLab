@@ -1,0 +1,144 @@
+
+{% extends 'relationship_app/base.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List of Books</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            padding: 8px;
+            width: 60%;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            padding: 8px 14px;
+            border: none;
+            background-color: #3366cc;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background: #e9efff;
+            margin-bottom: 15px;
+            padding: 15px;
+            border-left: 5px solid #3366cc;
+            border-radius: 8px;
+            transition: background 0.3s ease;
+        }
+
+        li:hover {
+            background: #dbe7ff;
+        }
+
+        .actions {
+            margin-top: 10px;
+        }
+
+        .actions a {
+            margin-right: 10px;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .pagination {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .pagination span, .pagination a {
+            margin: 0 5px;
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        .pagination .current {
+            background-color: #3366cc;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>📚 Books Available</h1>
+
+    <form method="get">
+        <input type="text" name="q" placeholder="Search by title or author..." value="{{ search_query }}">
+        <button type="submit">🔍 Search</button>
+    </form>
+
+    <ul>
+        {% for book in all_books %}
+            <li>
+                <strong>{{ book.title }}</strong><br>
+                Author: {{ book.author }}<br>
+                Published Date: {{ book.published_date|date:"F d, Y" }}<br>
+                ISBN: {{ book.isbn }}
+                <div class="actions">
+                    <a href="{% url 'book-update' book.pk %}">✏️ Edit</a>
+                    <a href="{% url 'book-delete' book.pk %}">🗑️ Delete</a>
+                </div>
+            </li>
+        {% empty %}
+            <li>No books found.</li>
+        {% endfor %}
+    </ul>
+
+    <div class="pagination">
+        {% if is_paginated %}
+            {% if page_obj.has_previous %}
+                <a href="?q={{ search_query }}&page={{ page_obj.previous_page_number }}">« Prev</a>
+            {% endif %}
+
+            <span class="current">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+
+            {% if page_obj.has_next %}
+                <a href="?q={{ search_query }}&page={{ page_obj.next_page_number }}">Next »</a>
+            {% endif %}
+        {% endif %}
+    </div>
+</div>
+</body>
+</html>
+{% endblock %}

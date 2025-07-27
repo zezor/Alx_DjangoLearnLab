@@ -1,0 +1,29 @@
+{% extends 'relationship_app/base.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All Libraries</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+<div class="container">
+    <h2>📚 All Libraries</h2>
+
+    <ul>
+        {% for library in libraries %}
+            <li>
+                <strong>{{ library.library_name }}</strong><br>
+                <a href="{% url 'library-detail' library.pk %}">View</a> |
+                <a href="{% url 'library-update' library.pk %}">Edit</a> |
+                <a href="{% url 'library-delete' library.pk %}">Delete</a>
+            </li>
+        {% empty %}
+            <li>No libraries available.</li>
+        {% endfor %}
+    </ul>
+</div>
+</body>
+</html>
+{% block content %}

@@ -1,0 +1,36 @@
+{% extends 'relationship_app/base.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ library.library_name }}</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+<div class="container">
+    <h2>{{ library.library_name }}</h2>
+
+    <p>
+        <a href="{% url 'library-update' library.pk %}">✏️ Edit Library</a> |
+        <a href="{% url 'library-delete' library.pk %}">🗑️ Delete Library</a> |
+        <a href="{% url 'library-list' %}">⬅️ Back to All Libraries</a>
+    </p>
+
+    <h3>Books in this Library:</h3>
+    <ul>
+        {% for book in library.books.all %}
+            <li>
+                <strong>{{ book.title }}</strong><br>
+                Author: {{ book.author.author_name }}<br>
+                Published: {{ book.published_date|date:"F j, Y" }}<br>
+                ISBN: {{ book.isbn }}
+            </li>
+        {% empty %}
+            <li>No books in this library.</li>
+        {% endfor %}
+    </ul>
+</div>
+</body>
+</html>
+{% endblock %}

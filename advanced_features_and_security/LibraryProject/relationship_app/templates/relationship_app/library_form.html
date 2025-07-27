@@ -1,0 +1,23 @@
+{% extends 'relationship_app/base.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Library</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+<div class="container">
+    <h2>✏️ Edit Library</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">💾 Save</button>
+        <a href="{% url 'library-list' %}">Cancel</a>
+    </form>
+</div>
+</body>
+</html>
+{% block content %}
