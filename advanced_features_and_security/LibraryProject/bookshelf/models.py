@@ -11,7 +11,7 @@ class Book(models.Model):
 
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 
-class UserManager(BaseUserManager):
+class CustomUserManager(BaseUserManager):
     def create_user(self, email, password):
         if not email:
             raise ValueError("User must have an email")
