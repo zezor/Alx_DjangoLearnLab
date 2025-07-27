@@ -31,8 +31,8 @@ class UserManager(BaseUserManager):
         return user
 
 class CustomUser(AbstractUser):
-    email = models.EmailField(unique=True, max_length=225)
-    profile_photo = models.ImageField(unique=False,)
+    date_of_birth = models.DateField(unique=True)
+    profile_photo = models.ImageField(unique=False)
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
