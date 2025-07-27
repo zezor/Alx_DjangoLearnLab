@@ -100,6 +100,7 @@ def edit_book(request, pk):
         form = BookForm(instance=book)
     return render(request, 'relationship_app/book_form.html', {'form': form, 'action': 'Edit'})
 
+
 @permission_required('relationship_app.can_delete_book', raise_exception=True)
 def delete_book(request, pk):
     book = get_object_or_404(Book, pk=pk)
@@ -116,7 +117,7 @@ class BookUpdateView(LoginRequiredMixin,UpdateView):
     template_name = 'relationship_app/book_form.html'
     success_url = reverse_lazy('allbooks')
 
-class BookDeleteView(DeleteView):
+class BookDeleteView(LoginRequiredMixin,DeleteView):
     model = Book
     template_name = 'relationship_app/book_confirm_delete.html'
     success_url = reverse_lazy('allbooks')
@@ -127,7 +128,7 @@ class BookDeleteView(DeleteView):
 
 
 
-class LibraryDeleteView(DeleteView):
+class LibraryDeleteView(LoginRequiredMixin,DeleteView):
     model = Library
     template_name = 'relationship_app/library_confirm_delete.html'
     success_url = reverse_lazy('library-list')
