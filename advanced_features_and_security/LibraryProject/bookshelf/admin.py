@@ -3,7 +3,8 @@ from django.contrib.auth.models import User
 
 # Register your models here.
 
-from .models import Book
+from .models import Book, CustomUser
+
 
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
@@ -13,3 +14,10 @@ class BookAdmin(admin.ModelAdmin):
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
     list_display = ('email','username', 'is_staff')
+
+
+class CustomUserAdmin:
+    pass
+
+
+admin.site.register(CustomUser, CustomUserAdmin)
