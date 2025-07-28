@@ -1,15 +1,24 @@
 from django.db import models
 
 # Create your models here.
-class Book(models.Model):
-    title = models.CharField(max_length=200)
-    author = models.CharField(max_length=100)
-    publication_year = models.IntegerField()
 
-    def __str__(self):
-        return f"{self.title} by {self.author} ({self.publication_year})"
 
 from django.contrib.auth.models import AbstractUser, BaseUserManager, UserManager
+class Book(models.Model):
+    title = models.CharField(max_length=255)
+    author = models.CharField(max_length=255)
+    publication_year = models.IntegerField()
+
+    class Meta:
+        permissions = (
+            ("can_view", "Can view Book"),
+            ("can_create", "Can create Book"),
+            ("can_edit", "Can edit Book"),
+            ("can_delete", "Can delete Book"),
+        )
+
+    def __str__(self):
+         return f"{self.title} by {self.author} ({self.publication_year})"
 
 
 class CustomUserManager(BaseUserManager):
