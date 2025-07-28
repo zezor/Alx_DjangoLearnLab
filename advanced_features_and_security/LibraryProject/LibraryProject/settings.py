@@ -151,6 +151,16 @@ CSP_DEFAULT_SRC = ("'self'",)
 CSP_STYLE_SRC = ("'self'", 'fonts.googleapis.com')
 CSP_FONT_SRC = ("'self'", 'fonts.gstatic.com')
 CSP_SCRIPT_SRC = ("'self'",)
+# Security settings for enforcing HTTPS and protecting against attacks
+
+SECURE_SSL_REDIRECT = True  # Redirect all HTTP to HTTPS
+SECURE_HSTS_SECONDS = 31536000  # One year HSTS policy
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True  # Apply HSTS to subdomains
+SECURE_HSTS_PRELOAD = True  # Allow browser preload list
+
+
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')  # Trust proxy headers if behind load balancer
 
 
 # Static files (CSS, JavaScript, Images)
