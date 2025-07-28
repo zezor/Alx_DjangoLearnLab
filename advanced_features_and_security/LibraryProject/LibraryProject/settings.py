@@ -11,8 +11,8 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
-import pymysql
-pymysql.install_as_MySQLdb()
+# import pymysql
+# pymysql.install_as_MySQLdb()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -128,6 +128,29 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
+
+DEBUG = False  # Never use DEBUG = True in production
+
+# Protects against some types of XSS attacks
+SECURE_BROWSER_XSS_FILTER = True
+
+# Prevents browsers from MIME-sniffing content-type
+SECURE_CONTENT_TYPE_NOSNIFF = True
+
+# Clickjacking protection
+X_FRAME_OPTIONS = 'DENY'
+
+# CSRF cookie only sent over HTTPS
+CSRF_COOKIE_SECURE = True
+
+# Session cookie only sent over HTTPS
+SESSION_COOKIE_SECURE = True
+
+# Content Security Policy (Step 4)
+CSP_DEFAULT_SRC = ("'self'",)
+CSP_STYLE_SRC = ("'self'", 'fonts.googleapis.com')
+CSP_FONT_SRC = ("'self'", 'fonts.gstatic.com')
+CSP_SCRIPT_SRC = ("'self'",)
 
 
 # Static files (CSS, JavaScript, Images)
