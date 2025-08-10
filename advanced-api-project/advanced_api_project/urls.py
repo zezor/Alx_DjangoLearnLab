@@ -32,4 +32,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),          # browseable API at /api/
     path('api-auth/', include('rest_framework.urls')),  # optional login for browsable API
+     path('api/', include('api.urls')),  # include our API routes
 ]
