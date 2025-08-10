@@ -42,13 +42,11 @@ class AuthorSerializer(serializers.ModelSerializer):
     Serializes Author model.
     - name: author name.
     - books: nested list of related Book objects using NestedBookSerializer.
-      This field is read-only in this serializer: creation/deletion of nested
-      books is managed via the Book endpoints or via custom create/update logic
-      if you later choose to implement writable nested serializers.
     """
-    books = NestedBookSerializer(many=True, read_only=True, source='books')
+    books = NestedBookSerializer(many=True, read_only=True)
 
     class Meta:
         model = Author
         fields = ['id', 'name', 'books']
-        read_only_fields = ['books']
+        # We include books as a read-only nested field to show related books
+        # when retrieving an Author instance.
