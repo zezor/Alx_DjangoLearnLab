@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
        # third-party
     'rest_framework',    # Django REST Framework
+    
+    
     'django_filters',  # for advanced filtering
 
     # local apps
