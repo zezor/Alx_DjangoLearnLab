@@ -210,3 +210,19 @@ def posts_by_tag(request, tag_name):
     tag = get_object_or_404(Tag, name=tag_name)
     posts = Post.objects.filter(tags__name__in=[tag_name])
     return render(request, 'blog/posts_by_tag.html', {'tag': tag, 'posts': posts})
+
+
+class PostByTagListView(ListView):
+    model = Post
+    template_name = 'blog/post_list.html'   # reuse post list template
+    context_object_name = 'posts'
+    paginate_by = 5
+
+    def get_queryset(self):
+        self.tag = get_object_or_404(Tag, slug=self.kwargs['tag_slug'])
+        return Post.objects.filter(tags=self.tag).order_by('-created_at')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['tag'] = self.tag
+        return context
