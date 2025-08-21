@@ -1,4 +1,4 @@
-Here’s a solid README.md draft for your project 👇
+
 
 Django Custom User Authentication API
 
