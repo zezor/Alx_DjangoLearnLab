@@ -24,7 +24,7 @@ class CommentForm(forms.ModelForm):
         }
         
 class TagWidget(forms.TextInput):
-    TagWidget()
+    
     """
     Custom widget for entering tags as comma-separated values.
     """
