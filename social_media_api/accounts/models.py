@@ -30,7 +30,7 @@ class CustomUserManager(BaseUserManager):
 
 
 class CustomUser(AbstractUser):
-    # Add any additional fields you want to include in your user model
+    # Remove username field since email is unique identifier
     username = None
     first_name = models.CharField(max_length=30, blank=True)
     last_name = models.CharField(max_length=30, blank=True)
@@ -39,16 +39,19 @@ class CustomUser(AbstractUser):
     bio = models.TextField(blank=True)
     location = models.CharField(max_length=100, blank=True)
     profile_picture = models.ImageField(upload_to='profile_pictures/', blank=True, null=True)
-    followers = models.ManyToManyField('self', symmetrical=False, related_name='following', blank=True)
+
+    # ✅ Users this user follows
+    following = models.ManyToManyField(
+        'self',
+        symmetrical=False,
+        related_name='followers',
+        blank=True
+    )
+ 
 
     USERNAME_FIELD = "email"  # Use email as the unique identifier
+    REQUIRED_FIELDS = []
 
-    REQUIRED_FIELDS = []  
-
-    objects = CustomUserManager()
-
-
-    
     def __str__(self):
         return self.email
 
