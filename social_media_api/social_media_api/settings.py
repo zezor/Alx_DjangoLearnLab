@@ -97,7 +97,7 @@ WSGI_APPLICATION = 'social_media_api.wsgi.application'
 #         'ENGINE': 'django.db.backends.sqlite3',
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
-}
+# }
 
 
 DATABASES = {
@@ -156,3 +156,13 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
+
+# Security settings
+SECURE_BROWSER_XSS_FILTER = True
+X_FRAME_OPTIONS = "DENY"
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_SSL_REDIRECT = True  # Redirect all HTTP requests to HTTPS
+
+# CSRF and session cookies (recommended for production)
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
